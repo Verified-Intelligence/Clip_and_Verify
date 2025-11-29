@@ -80,48 +80,63 @@ All experiments use the unified front-end `abcrown.py` from α,β-CROWN; Clip-an
 
 Below are typical command patterns for different benchmark groups. Replace `<config>` with the actual config filenames provided in this repo.
 
-#### 3.1 Input BaB benchmarks and NN control systems
+#### 3.1 Input-space BaB benchmarksfrom VNN-COMP
 
-For input-space BaB benchmarks such as **acasxu**, **lsnc**, **nn4sys**, and the hard NN control systems (*cartpole*, *Quadrotor-2D*, *Quadrotor-2D-Large-ROA*), we use Relaxed and/or Complete Clipping to tighten the input domain and prune subproblems. 
+For input-space BaB benchmarks such as **acasxu** (VNN-COMP 2021), **lsnc** (VNN-COMP 2024), **nn4sys** (VNN-COMP 2022), we use Relaxed and/or Complete Clipping to tighten the input domain and prune subproblems. Listed in this subsection are the command lines to run the VNN-COMP benchmarks.
 
 * Clip-n-Verify, Complete
-Remove `--enable_complete_clip_inputbab` to run vanilla α,β-CROWN.
 
     ```
     # acasxu
-    python abcrown.py --config exp_configs/vnncomp23/acasxu.yaml --enable_complete_clip_inputbab  --reorder_bab
+    python abcrown.py --config exp_configs/vnncomp23/acasxu.yaml --enable_clip_input --clip_input_type complete --reorder_bab
 
     # nn4sys
-    python abcrown.py --config exp_configs/vnncomp23/nn4sys.yaml --enable_complete_clip_inputbab  --reorder_bab
+    python abcrown.py --config exp_configs/vnncomp23/nn4sys.yaml --enable_clip_input --clip_input_type complete --reorder_bab
 
     # lsnc
-    python abcrown.py --config exp_configs/vnncomp24/lsnc.yaml --enable_complete_clip_inputbab  --reorder_bab --initial_max_domains 100000
+    python abcrown.py --config exp_configs/vnncomp24/lsnc.yaml --enable_clip_input --clip_input_type complete --reorder_bab
     ```
 
 * Clip-n-Verify, Relaxed
 
     ```
-    python abcrown.py --config exp_configs/vnncomp23/acasxu.yaml  --enable_relexed_clip --reorder_bab
+    python abcrown.py --config exp_configs/vnncomp23/acasxu.yaml --enable_clip_input --clip_input_type relaxed --reorder_bab
 
-    python abcrown.py --config exp_configs/vnncomp23/nn4sys.yaml  --enable_relexed_clip --reorder_bab
+    python abcrown.py --config exp_configs/vnncomp23/nn4sys.yaml --enable_clip_input --clip_input_type relaxed --reorder_bab 
 
-    python abcrown.py --config exp_configs/vnncomp24/lsnc.yaml  --enable_relexed_clip --reorder_bab --initial_max_domains 100000
+    python abcrown.py --config exp_configs/vnncomp24/lsnc.yaml --enable_clip_input --clip_input_type relaxed --reorder_bab
     ```
 
 * Clip-n-Verify, Relaxed w/o Reorder
 
     ```
-    python abcrown.py --config exp_configs/vnncomp23/acasxu.yaml --enable_relexed_clip 
+    python abcrown.py --config exp_configs/vnncomp23/acasxu.yaml --enable_clip_input --clip_input_type relaxed
 
-    python abcrown.py --config exp_configs/vnncomp23/nn4sys.yaml --enable_relexed_clip 
+    python abcrown.py --config exp_configs/vnncomp23/nn4sys.yaml --enable_clip_input --clip_input_type relaxed
 
-    python abcrown.py --config exp_configs/vnncomp24/lsnc.yaml --enable_relexed_clip  --initial_max_domains 100000
+    python abcrown.py --config exp_configs/vnncomp24/lsnc.yaml --enable_clip_input --clip_input_type relaxed
     ```
 
 
-These configs reproduce the results in Tables 1–2 of the paper (branch reductions and subproblem reductions up to 96% on the hardest control tasks). 
+These configs reproduce the results in Table 1 of the paper (branch reductions and subproblem reductions up to 96% on the hardest control tasks). 
 
-#### 3.2 Activation-space BaB benchmarks from VNN-COMP
+#### 3.2 Hard Control Verification Problem
+
+The NN control system verificaion problems in our paper come from a recent study on [**provably stable neural network control systems**](https://github.com/Verified-Intelligence/Two-Stage_Neural_Controller_Training). In Table 2, we illustrated the results on 3 different problems. To reproduce the results, please run the following command lines:
+
+* Installing Repo
+    ```bash
+    git clone --recursive https://github.com/Verified-Intelligence/Two-Stage_Neural_Controller_Training.git
+
+    cd Two-Stage_Neural_Controller_Training
+
+    conda env create -f environment.yaml --name zubov
+
+    conda activate zubov
+    ```
+
+
+#### 3.3 Activation-space BaB benchmarks from VNN-COMP
 
 For activation-space BaB benchmarks from **VNN-COMP 2021–2024** (e.g., *oval22*, *cifar10-resnet*, *cifar100-2024*, *tinyimagenet-2024*, *vit-2024*), we integrate Complete Clipping into the β-CROWN / BICCOS BaB loop. 
 
@@ -230,7 +245,6 @@ Example:
 
 
 These runs reproduce the verified-accuracy and runtime comparisons in Tables 3–4, where **Clip-and-Verify with BICCOS** attains state-of-the-art coverage and pushes closer to the theoretical upper bounds. 
-
 
 ## BibTeX Entry
 
