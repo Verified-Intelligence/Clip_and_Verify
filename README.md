@@ -73,6 +73,12 @@ git clone https://github.com/ChristopherBrix/vnncomp2023_benchmarks.git
 git clone https://github.com/ChristopherBrix/vnncomp2024_benchmarks.git
 ```
 
+To reproduce the results in control verification problems, please also clone this repository:
+
+```bash
+git clone https://github.com/Verified-Intelligence/Clip_and_Verify.git
+```
+
 
 ### 3. Running Clip-and-Verify experiments
 
@@ -124,15 +130,34 @@ These configs reproduce the results in Table 1 of the paper (branch reductions a
 
 The NN control system verificaion problems in our paper come from a recent study on [**provably stable neural network control systems**](https://github.com/Verified-Intelligence/Two-Stage_Neural_Controller_Training). In Table 2, we illustrated the results on 3 different problems. To reproduce the results, please run the following command lines:
 
-* Installing Repo
+* Clip-and-Verify, complete
+
     ```bash
-    git clone --recursive https://github.com/Verified-Intelligence/Two-Stage_Neural_Controller_Training.git
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/cartpole/cartpole.yaml --enable_clip_input --clip_input_type complete
 
-    cd Two-Stage_Neural_Controller_Training
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor/quadrotor.yaml --enable_clip_input --clip_input_type complete
 
-    conda env create -f environment.yaml --name zubov
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor_large/quadrotor_large.yaml --enable_clip_input --clip_input_type complete
+    ```
 
-    conda activate zubov
+*   Clip-and-Verify, relaxed
+
+     ```bash
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/cartpole/cartpole.yaml --enable_clip_input
+
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor/quadrotor.yaml --enable_clip_input
+
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor_large/quadrotor_large.yaml --enable_clip_input
+    ```
+
+*   Clip-and-Verify, $\alpha,\beta$-CROWN
+    
+    ```bash
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/cartpole/cartpole.yaml
+
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor/quadrotor.yaml
+
+    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor_large/quadrotor_large.yaml
     ```
 
 
