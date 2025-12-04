@@ -143,21 +143,21 @@ The NN control system verificaion problems in our paper come from a recent study
 *   Clip-and-Verify, relaxed
 
      ```bash
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/cartpole/cartpole.yaml --enable_clip_input
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/cartpole/cartpole.yaml --enable_clip_input
 
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor/quadrotor.yaml --enable_clip_input
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/quadrotor/quadrotor.yaml --enable_clip_input
 
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor_large/quadrotor_large.yaml --enable_clip_input
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/quadrotor_large/quadrotor_large.yaml --enable_clip_input
     ```
 
 *   Clip-and-Verify, $\alpha,\beta$-CROWN
     
     ```bash
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/cartpole/cartpole.yaml
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/cartpole/cartpole.yaml
 
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor/quadrotor.yaml
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/quadrotor/quadrotor.yaml
 
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor_large/quadrotor_large.yaml
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/quadrotor_large/quadrotor_large.yaml
     ```
 
 
