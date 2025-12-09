@@ -133,11 +133,11 @@ The NN control system verificaion problems in our paper come from a recent study
 * Clip-and-Verify, complete
 
     ```bash
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/cartpole/cartpole.yaml --enable_clip_input --clip_input_type complete
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/cartpole/cartpole.yaml --enable_clip_input --clip_input_type complete
 
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor/quadrotor.yaml --enable_clip_input --clip_input_type complete
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/quadrotor/quadrotor.yaml --enable_clip_input --clip_input_type complete
 
-    python abcrown.py   --config ../../Clip_and_Verify/control_verification/quadrotor_large/quadrotor_large.yaml --enable_clip_input --clip_input_type complete
+    python abcrown.py   --config ../../Clip_and_Verify/Control_Verification/quadrotor_large/quadrotor_large.yaml --enable_clip_input --clip_input_type complete
     ```
 
 *   Clip-and-Verify, relaxed
