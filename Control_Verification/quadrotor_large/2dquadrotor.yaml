@@ -2,11 +2,11 @@ general:
   conv_mode: matrix
   enable_incomplete_verification: false
   root_path: ../../Clip_and_Verify/Control_Verification/
-  csv_name: quadrotor/specs.csv
+  csv_name: quadrotor_large/specs.csv
 model:
   name: >-
-    Customized("../../verification_loss.py", "create_verification_loss", dynamics_name="2dquadrotor")
-  path: ./../Clip_and_Verify/Control_Verification/quadrotor/seed_0.pth
+    Customized("verification_loss.py", "create_verification_loss", dynamics_name="2dquadrotor")
+  path: ../../Clip_and_Verify/Control_Verification/quadrotor_large/seed_0.pth
   input_shape: [-1, 6]
   with_jacobian: True
   bound_opts: "{'s_shaped_disable_smoothness_enhancement':True}"
@@ -22,8 +22,6 @@ solver:
   min_batch_size_ratio: 0.
   bound_prop_method: crown
   forward_before_compute_bounds: False
-  crown:
-    mul_middle: True
 bab:
   override_timeout: 100000000
   decision_thresh: -1.e-6  # Tolerance. Must not be exact zero.
